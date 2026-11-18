@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Вика — цикл и мигрени</title>
+<meta name="description" content="Личный трекер менструального цикла и мигреней. Приватно, спокойно, без визуального шума.">
+<meta name="theme-color" content="#FBF6F0">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Вика">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.2l1.9 4.9 4.9 1.9-4.9 1.9L12 16.8l-1.9-4.9L5.2 10l4.9-1.9L12 3.2z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5"/><path d="M6 9.5V20h12V9.5"/><path d="M9.8 20v-5.4h4.4V20"/></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="4"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/><circle cx="12" cy="15" r="2.4"/></symbol>
+  <symbol id="i-migraine" viewBox="0 0 24 24"><path d="M9.2 20.5v-2.1c0-.6-.3-1.1-.8-1.5A7 7 0 1 1 19 10c0 2.2-1 3.6-2.3 4.8-.5.5-.8 1.2-.8 1.9v1.8"/><path d="M9.2 20.5h5"/><path d="M13.4 7.2l-2.1 3h2.4l-1.9 3.1"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h7M16 7h4M4 17h4M13 17h7"/><circle cx="13.5" cy="7" r="2.5"/><circle cx="10.5" cy="17" r="2.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5s6 6.4 6 10.4a6 6 0 0 1-12 0c0-4 6-10.4 6-10.4z"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4.5c-7.5-.6-14 3.1-14 9.2a5.8 5.8 0 0 0 5.8 5.8c6.1 0 9.2-7 8.2-15z"/><path d="M4 20c2.2-4.7 5.5-7.7 10-9.5"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24"><path d="M3 12h3.5l2.2-6 3.4 12 2.4-8 1.6 2h4.9"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.3A7.8 7.8 0 0 1 9.7 4.5a8 8 0 1 0 9.8 9.8z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-9.6A4.4 4.4 0 0 1 12 7.2a4.4 4.4 0 0 1 7.5 3.2C19.5 15.6 12 20 12 20z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M18.5 5.5l-1.4 1.4M6.9 17.1l-1.4 1.4"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><rect x="3.2" y="8.4" width="17.6" height="7.2" rx="3.6" transform="rotate(-40 12 12)"/><path d="M9.2 6.7l8.1 8.1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.3 4.3L19 7"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 7.8h.01"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="3.2"/><path d="M8.2 10V7.8a3.8 3.8 0 0 1 7.6 0V10"/><path d="M12 14v2.5"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.5 18.5a4.2 4.2 0 0 1-.4-8.4A5.8 5.8 0 0 1 18 9.2a4.7 4.7 0 0 1 .6 9.3"/><path d="M12 12.5v6M9.6 16l2.4-2.4 2.4 2.4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10M8 10.5l4 4 4-4"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V5M8 8.5l4-4 4 4"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.8h5V7M7 7l.8 12.2h8.4L17 7"/><path d="M10.2 10.5v5.5M13.8 10.5v5.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.2l7 2.6v5.4c0 4.5-2.9 7.7-7 9.6-4.1-1.9-7-5.1-7-9.6V5.8l7-2.6z"/><path d="M8.8 12l2.2 2.2 4.4-4.4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5V9H15"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h15M14 6.5l5.5 5.5L14 17.5"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 4.5h9.5L19.5 9v10.5h-14.5z"/><path d="M14 4.8V9h4.2M8.5 13h7M8.5 16.5h4.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6-5.4 6-10a6 6 0 1 0-12 0c0 4.6 6 10 6 10z"/><circle cx="12" cy="10.5" r="2.2"/></symbol>
+</svg>
+
+<div class="ambient" aria-hidden="true">
+  <span class="blob blob-a"></span>
+  <span class="blob blob-b"></span>
+  <span class="blob blob-c"></span>
+  <span class="grain"></span>
+</div>
+
+<div class="app">
+  <main id="view"></main>
+
+  <nav class="tabbar" id="tabbar" aria-label="Разделы">
+    <button class="tab" data-tab="today" aria-current="page">
+      <span class="tab-ico"><svg><use href="#i-home"/></svg></span>
+      <span>Сегодня</span>
+    </button>
+    <button class="tab" data-tab="cycle">
+      <span class="tab-ico"><svg><use href="#i-cycle"/></svg></span>
+      <span>Цикл</span>
+    </button>
+    <button class="tab" data-tab="migraine">
+      <span class="tab-ico"><svg><use href="#i-migraine"/></svg></span>
+      <span>Мигрени</span>
+    </button>
+  </nav>
+</div>
+
+<div class="sheet-layer" id="sheet-layer" aria-hidden="true">
+  <div class="sheet-backdrop" data-sheet-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <div>
+        <p class="sheet-kicker" id="sheet-kicker"></p>
+        <h2 class="sheet-title" id="sheet-title"></h2>
+        <p class="sheet-sub" id="sheet-sub"></p>
+      </div>
+      <button class="icon-btn small" data-sheet-close aria-label="Закрыть">
+        <svg><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="lock" id="lock" hidden>
+  <div class="lock-card">
+    <div class="brand-mark"><svg><use href="#i-moon"/></svg></div>
+    <h1>Привет, <span id="lock-name">Вика</span></h1>
+    <p class="muted">Введите PIN, чтобы открыть дневник</p>
+    <div class="pin-dots" id="pin-dots" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="keypad" id="keypad">
+      <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+      <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+      <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+      <button class="key-blank" disabled></button><button data-key="0">0</button><button data-key="del" aria-label="Удалить"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <p class="lock-error" id="lock-error" aria-live="polite"></p>
+  </div>
+</div>
+
+<noscript>
+  <div class="noscript">Для работы приложения нужен JavaScript. Включите его в настройках браузера.</div>
+</noscript>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
