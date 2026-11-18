@@ -5,7 +5,7 @@
 
 import {
   todayISO, fmtDate, fmtMonth, monthMatrix, addDays, diffDays,
-  daysWord, greeting, relDay, fromISO, ISO_RE,
+  daysWord, greeting, relDay, fromISO, ISO_RE, plural,
 } from './js/dates.js';
 import {
   currentCycle, buildDayMap, cycleHistory, PHASES, PHASE_ORDER, FERTILITY_TEXT,
@@ -1174,7 +1174,7 @@ function sheetTips() {
   return {
     kicker: 'Библиотека',
     title: 'Рекомендации',
-    sub: `${TIP_COUNTS[phase]} советов для этой фазы`,
+    sub: `${TIP_COUNTS[phase]} ${plural(TIP_COUNTS[phase], 'совет', 'совета', 'советов')} для этой фазы`,
     body: `
       <div class="tips-tabs" style="margin-top:6px">
         ${PHASE_ORDER.map((k) => `<button class="${phase === k ? 'on' : ''}" data-act="tips-phase" data-v="${k}">${esc(PHASE_LABEL[k])}</button>`).join('')}
