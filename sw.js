@@ -10,7 +10,7 @@
    Здесь — только установка, активация и стратегии.
    ============================================================ */
 
-const VERSION = 'vika-v1.4.0';
+const VERSION = 'vika-v1.4.1';
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 

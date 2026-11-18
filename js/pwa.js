@@ -1,7 +1,7 @@
 /* Общие константы PWA: версия кэша и список файлов оболочки.
    Используются и страницей (предзагрузка кэша), и service worker'ом. */
 
-export const PWA_VERSION = 'vika-v1.4.0';
+export const PWA_VERSION = 'vika-v1.4.1';
 export const SHELL_CACHE = `${PWA_VERSION}-shell`;
 export const RUNTIME_CACHE = `${PWA_VERSION}-runtime`;
 
