@@ -72,6 +72,11 @@ powershell -ExecutionPolicy Bypass -File .\tools\serve.ps1 -Port 8080 -Root .
 
 ## 3. Firebase за 5 минут (необязательно, но полезно)
 
+> **В этом проекте Firebase уже подключён.** Конфиг лежит в `js/firebase.js` (проект
+> `vika-cycle`), Email/Password включён, Firestore создан в `europe-west3`, правила
+> опубликованы, аккаунт для входа создан. Раздел ниже — если нужно повторить всё
+> с нуля или подключить свой проект.
+
 Нужен, чтобы данные не потерялись при очистке браузера и были доступны на iPhone и Android.
 Firebase бесплатного тарифа (Spark) здесь более чем достаточно: один пользователь, несколько
 килобайт данных.
@@ -168,6 +173,10 @@ export const FIREBASE_CONFIG = {
 
 ## 4. GitHub Pages за 3 минуты
 
+> **В этом проекте уже сделано:** репозиторий <https://github.com/nl4rvr/vika>,
+> Pages включён, сайт живёт по адресу **<https://nl4rvr.github.io/vika/>**.
+> Раздел ниже — если нужно повторить с нуля.
+
 1. Создайте **публичный** репозиторий, например `vika`:
    <https://github.com/new>.
 2. Загрузите файлы. Через сайт: **Add file → Upload files**, перетащите **всё содержимое папки**
@@ -210,6 +219,10 @@ export const FIREBASE_CONFIG = {
 ---
 
 ## 5. Установка на телефон
+
+> **Адрес приложения:** <https://nl4rvr.github.io/vika/>
+> Вход в облако — в Настройках: e-mail `blockingacorn98@gmail.com`, пароль вы задали
+> при создании пользователя в Firebase (его можно сменить там же: Authentication → Users).
 
 ### iPhone / iPad (Safari)
 
